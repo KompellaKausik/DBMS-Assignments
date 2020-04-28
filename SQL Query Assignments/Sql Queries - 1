@@ -1,0 +1,169 @@
+
+
+1. Find out the PG-13 rated comedy movies. DO NOT use the film_list table.
+
+
+select film.film_id, film.title
+from film, film_category, category
+where film.film_id = film_category.film_id
+and film_category.category_id = category.category_id 
+and rating = "PG-13"
+and category.name = "Comedy";
+
++---------+-------------------------+
+| film_id | title                   |
++---------+-------------------------+
+|       7 | AIRPLANE SIERRA         |
+|      28 | ANTHEM LUKE             |
+|     324 | FLINTSTONES HAPPINESS   |
+|     335 | FREEDOM CLEOPATRA       |
+|     385 | GROUNDHOG UNCUT         |
+|     502 | KNOCK WARLOCK           |
+|     657 | PARADISE SABRINA        |
+|     672 | PERFECT GROOVE          |
+|     754 | RUSHMORE MERMAID        |
+|     756 | SADDLE ANTITRUST        |
+|     857 | STRICTLY SCARFACE       |
+|     905 | TRAINSPOTTING STRANGERS |
++---------+-------------------------+
+12 rows in set (0.01 sec)
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+2. Find out the top 3 rented horror movies.
+
+select title from film f
+inner join film_category fc on f.film_id = fc.film_id
+inner join category c on fc.category_id = c.category_id
+inner join inventory i on i.film_id = f.film_id
+inner join rental r on r.inventory_id = i.inventory_id
+where c.name = "Horror" 
+group by title
+order by count(title) desc limit 3;
+
+
++--------------+
+| title        |
++--------------+
+| PULP BEVERLY |
+| FAMILY SWEET |
+| SWARM GOLD   |
++--------------+
+3 rows in set (0.01 sec)
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Find out the list of customers from India who have rented sports movies.
+
+select cus.first_name,cus.last_name from customer cus 
+where cus.customer_id in (select r.customer_id 
+from rental r where r.inventory_id in ( select i.inventory_id from inventory i
+where i.film_id in (select f.film_id 
+from film_category fc inner join film f 
+on f.film_id=fc.film_id inner join category c on
+fc.category_id=c.category_id where name = "sports")))
+and cus.address_id in (select ad.address_id from address ad where city_id in
+ (select ct.city_id from city ct where country_id in 
+ (select cntry.country_id from country cntry where country = "INDIA")));
+
+
++------------+-------------+
+| first_name | last_name   |
++------------+-------------+
+| LENA       | JENSEN      |
+| SAMUEL     | MARLOW      |
+| WAYNE      | TRUONG      |
+| ADAM       | GOOCH       |
+| SHANNON    | FREEMAN     |
+| DWAYNE     | OLVERA      |
+| TIM        | CARY        |
+| NAOMI      | JENNINGS    |
+| LORI       | WOOD        |
+| CHAD       | CARBONE     |
+| GERALD     | FULTZ       |
+| STEVEN     | CURLEY      |
+| BRETT      | CORNWELL    |
+| PEARL      | GARZA       |
+| PENNY      | NEAL        |
+| RAMONA     | HALE        |
+| MILTON     | HOWLAND     |
+| NICOLE     | PETERSON    |
+| LEE        | HAWKS       |
+| BRADLEY    | MOTLEY      |
+| LUCY       | WHEELER     |
+| HELEN      | HARRIS      |
+| JOSEPHINE  | GOMEZ       |
+| GEORGIA    | JACOBS      |
+| MIKE       | WAY         |
+| ANNETTE    | OLSON       |
+| SALLY      | PIERCE      |
+| TONYA      | CHAPMAN     |
+| MILDRED    | BAILEY      |
+| JOSHUA     | MARK        |
+| THEODORE   | CULP        |
+| NINA       | SOTO        |
+| JUANITA    | MASON       |
+| CHERYL     | MURPHY      |
+| LAURIE     | LAWRENCE    |
+| EDITH      | MCDONALD    |
+| AMY        | LOPEZ       |
+| ANITA      | MORALES     |
+| ALLEN      | BUTTERFIELD |
+| SHERRI     | RHODES      |
+| NANCY      | THOMAS      |
+| ARLENE     | HARVEY      |
+| BERNARD    | COLBY       |
+| JOHN       | FARNSWORTH  |
+| PAULA      | BRYANT      |
+| CYNTHIA    | YOUNG       |
+| CARLOS     | COUGHLIN    |
+| BEATRICE   | ARNOLD      |
+| CHRISTIAN  | JUNG        |
+| HOLLY      | FOX         |
++------------+-------------+
+50 rows in set (0.01 sec)
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+4. Find out the list of customers from Canada who have rented “NICK WAHLBERG” movies.
+
+select cus.first_name,cus.last_name from customer cus 
+where cus.customer_id in (select r.customer_id 
+from rental r where r.inventory_id in ( select i.inventory_id from inventory i
+where i.film_id in (select f.film_id 
+from film_actor fa inner join film f on f.film_id = fa.film_id
+inner join actor act on fa.actor_id=act.actor_id 
+where act.first_name = "NICK" and act.last_name = "WAHLBERG")))
+and
+cus.address_id in (select ad.address_id from address ad where city_id in
+ (select ct.city_id from city ct where country_id in 
+ (select cntry.country_id from country cntry where country = "CANADA")));
+ 
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| LORETTA    | CARPENTER |
+| DARRELL    | POWER     |
++------------+-----------+
+2 rows in set (0.03 sec)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5. Find out the number of movies in which “SEAN WILLIAMS” acted.
+
+select count(*) 
+from film_actor fa inner join film f on f.film_id = fa.film_id
+inner join actor act on fa.actor_id=act.actor_id 
+where act.first_name = "SEAN" and act.last_name = "WILLIAMS";
+
++----------+
+| count(*) |
++----------+
+|       26 |
++----------+
+1 row in set (0.00 sec)
+
+
+

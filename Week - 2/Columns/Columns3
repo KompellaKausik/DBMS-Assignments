@@ -1,0 +1,32 @@
+mysql> show columns from EventPlanLine;
++-----------+------------+------+-----+---------+-------+
+| Field     | Type       | Null | Key | Default | Extra |
++-----------+------------+------+-----+---------+-------+
+| PlanNo    | varchar(8) | NO   | MUL | NULL    |       |
+| LineNo    | int(11)    | NO   |     | NULL    |       |
+| TimeStart | datetime   | NO   |     | NULL    |       |
+| TimeEnd   | datetime   | NO   |     | NULL    |       |
+| NumberFld | int(11)    | NO   |     | NULL    |       |
+| LocNo     | varchar(8) | NO   | MUL | NULL    |       |
+| ResNo     | varchar(8) | NO   | MUL | NULL    |       |
++-----------+------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> show columns from EventRequest;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| EventNo     | varchar(8)  | NO   | PRI | NULL    |       |
+| DateHeld    | date        | NO   |     | NULL    |       |
+| DateReq     | date        | NO   |     | NULL    |       |
+| FacNo       | varchar(8)  | NO   | MUL | NULL    |       |
+| CustNo      | varchar(8)  | NO   | MUL | NULL    |       |
+| DateAuth    | date        | YES  |     | NULL    |       |
+| Status      | varchar(20) | YES  |     | NULL    |       |
+| EstCost     | int(11)     | NO   |     | NULL    |       |
+| EstAudience | int(11)     | YES  |     | NULL    |       |
+| BudNo       | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+

@@ -1,0 +1,39 @@
+ select * from Employee;
++-------+--------------------+----------------+--------------------+--------+
+| EmpNo | EmpName            | Department     | Email              | Phone  |
++-------+--------------------+----------------+--------------------+--------+
+| E100  | Chuck Coordinator  | Administration | chuck@colorado.edu | 3-1111 |
+| E101  | Mary Manager       | Football       | mary@colorado.edu  | 5-1111 |
+| E102  | Sally Supervisor   | Planning       | sally@colorado.edu | 3-2222 |
+| E103  | Alan Administrator | Administration | alan@colorado.edu  | 3-3333 |
++-------+--------------------+----------------+--------------------+--------+
+4 rows in set (0.00 sec)
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+ select * from Facility;
++-------+------------------+
+| FacNo | FacName          |
++-------+------------------+
+| F100  | Football stadium |
+| F101  | Basketball arena |
+| F102  | Baseball field   |
+| F103  | Recreation room  |
+| F104  | Swimming pool    |
++-------+------------------+
+5 rows in set (0.00 sec)
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+select * from Customer;
++--------+----------------------+---------------+----------+------------------+---------+------------+-------+-------+
+| CustNo | CustName             | Address       | Internal | Contact          | Phone   | City       | State | Zip   |
++--------+----------------------+---------------+----------+------------------+---------+------------+-------+-------+
+| C100   | Football             | Box 352200    | Y        | Mary Manager     | 6857100 | Boulder    | CO    | 80309 |
+| C101   | Men's Basketball     | Box 352400    | Y        | Sally Supervisor | 5431700 | Boulder    | CO    | 80309 |
+| C103   | Baseball             | Box 352020    | Y        | Bill Baseball    | 5431234 | Boulder    | CO    | 80309 |
+| C104   | Women's Softball     | Box 351200    | Y        | Sue Softball     | 5434321 | Boulder    | CO    | 80309 |
+| C105   | High School Football | 123 AnyStreet | N        | Coach Bob        | 4441234 | Louisville | CO    | 80027 |
++--------+----------------------+---------------+----------+------------------+---------+------------+-------+-------+
+5 rows in set (0.00 sec)
+

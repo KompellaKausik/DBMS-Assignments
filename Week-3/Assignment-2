@@ -1,0 +1,111 @@
+select EventRequest.EventNo, DateHeld, count(*) as PlanCount
+from EventRequest, EventPlan
+where EventRequest.EventNo = EventPlan.EventNo
+and WorkDate between '2018-12-01' and '2018-12-31'
+group by EventNo
+having count(*) > 1;
+
+ +---------+------------+-----------+
+ | EventNo | DateHeld   | PlanCount |
+ +---------+------------+-----------+
+ | E106    | 2018-12-12 |         2 |
+ +---------+------------+-----------+
+
+
+
+select PlanNo, EventPlan.EventNo, WorkDate, Activity
+from EventPlan, EventRequest, Facility
+where EventPlan.EventNo = EventRequest.EventNo
+and EventRequest.FacNo = Facility.FacNo
+and WorkDate between '2018-12-01' and '2018-12-31'
+and Facility.FacName = "Basketball arena";
+
++--------+---------+------------+-----------+
+ | PlanNo | EventNo | WorkDate   | Activity  |
++--------+---------+------------+-----------+
+| P101   | E104    | 2018-12-03 | Operation |
+| P102   | E105    | 2018-12-05 | Operation |
+| P103   | E106    | 2018-12-12 | Operation |
+| P349   | E106    | 2018-12-12 | Setup     |
++--------+---------+------------+-----------+
+
+
+
+
+
+select EventRequest.EventNo, DateHeld, Status, Estcost
+from EventRequest, Facility, EventPlan, Employee 
+where EventRequest.FacNo = Facility.FacNo
+and EventRequest.EventNo = EventPlan.EventNo
+and EventPlan.EmpNo = Employee.EmpNo
+and EmpName = "Mary Manager"
+and FacName = "Basketball arena"
+and DateHeld between '2018-10-01' and '2018-12-31';
+
++---------+------------+----------+---------+
+| EventNo | DateHeld   | Status   | Estcost |
++---------+------------+----------+---------+
+| E106    | 2018-12-12 | Approved | 2000.00 |
++---------+------------+----------+---------+
+
+
+
+.
+
+select EventPlanLine.PlanNo, EventPlanLine.line, ResName, NumberFld, LocName, TimeStart, TimeEnd
+from EventPlanLine, EventPlan, ResourceTbl, Location, Facility
+where EventPlanLine.ResNo = ResourceTbl.ResNo 
+and EventPlanLine.LocNo = Location.LocNo 
+and Location.FacNo = Facility.FacNo 
+and EventPlanLine.PlanNo = EventPlan.PlanNo 
+and FacName = "Basketball arena"
+and Activity = "Operation"
+and WorkDate between '2018-12-01' and '2018-12-31';
+
+
++--------+-----+-----------+-----------+-------------+---------------------+---------------------+
+| PlanNo | line | ResName   | NumberFld | LocName     | TimeStart           | TimeEnd             |
++--------+-----+-----------+-----------+-------------+---------------------+---------------------+
+| P101   | 1   | attendant |         2 | Locker room | 2018-12-03 18:00:00 | 2018-12-03 20:00:00 |
+| P101   | 2   | attendant |         4 | Gate        | 2018-12-03 18:30:00 | 2018-12-03 19:00:00 |
+| P101   | 3   | nurse     |         2 | Locker room | 2018-12-03 19:00:00 | 2018-12-03 20:00:00 |
+| P102   | 1   | attendant |         2 | Locker room | 2018-12-05 18:00:00 | 2018-12-05 19:00:00 |
+| P102   | 2   | attendant |         4 | Gate        | 2018-12-05 18:00:00 | 2018-12-05 21:00:00 |
+| P102   | 3   | nurse     |         2 | Locker room | 2018-12-05 19:00:00 | 2018-12-05 22:00:00 |
+| P103   | 1   | attendant |         2 | Locker room | 2018-12-12 18:00:00 | 2018-12-12 21:00:00 |
+| P103   | 2   | attendant |         4 | Gate        | 2018-12-12 18:00:00 | 2018-12-12 21:00:00 |
+| P103   | 3   | nurse     |         2 | Locker room | 2018-12-12 19:00:00 | 2018-12-12 22:00:00 |
++--------+-----+-----------+-----------+-------------+---------------------+---------------------+
+
+
+
+
+
+insert into Facility values ("F104", "Swimming Pool");
+
+Query OK, 1 row affected (0.01 sec)
+
+
+
+
+insert into Location values ("L107", "F104", "Door");
+
+Query OK, 1 row affected (0.01 sec)
+
+
+
+insert into Location values ("L108", "F104", "Locker Room");
+
+Query OK, 1 row affected (0.01 sec)
+
+
+Update Location SET LocName = 'Gate' where LocNo = 'L107'
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+
+delete from Location where LocNo = '108';
+Query OK, 0 rows affected (0.00 sec)
+
+

@@ -1,0 +1,86 @@
+1. Find out the number of documentaries with deleted scenes.
+
+select count(*) from film f 
+inner join film_category fc on f.film_id = fc.film_id
+where fc.category_id = (select category_id from category where name = "DOCUMENTARY")
+and f.special_features like "%Deleted Scenes%";
+
+
++----------+
+| count(*) |
++----------+
+|       34 |
++----------+
+1 row in set (0.00 sec)
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+2.Find out the number of sci-fi movies rented by the store managed by Jon Stephens.
+
+select count(*) from category cat
+inner join film_category fc on cat.category_id = fc.category_id
+inner join inventory i on i.film_id = fc.film_id
+inner join store s on i.store_id = s.store_id
+inner join staff st on s.store_id = st.store_id
+where st.first_name = "Jon" and st.last_name = "Stephens"
+and cat.name = "Sci-Fi";
+
++----------+
+| count(*) |
++----------+
+|      163 |
++----------+
+1 row in set (0.00 sec)
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Find out the total sales from Animation movies.
+
+select total_sales from sales_by_film_category where category = "Animation";"
++-------------+
+| total_sales |
++-------------+
+|     4656.30 |
++-------------+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+4. Find out the top 3 rented category of movies by “PATRICIA JOHNSON”.
+
+select cat.name from category cat
+inner join film_list fl on fl.category = cat.name
+inner join inventory i on i.film_id = fl.FID
+inner join rental r on r.inventory_id = i.inventory_id
+inner join customer cust on cust.customer_id = r.customer_id
+where first_name = "PATRICIA"
+and last_name = "JOHNSON"
+group by cat.name
+order by count(cat.name) desc limit 3;  
+
++-----------+
+| name      |
++-----------+
+| Sports    |
+| Classics  |
+| Animation |
++-----------+
+3 rows in set (0.05 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+5. Find out the number of R rated movies rented by “SUSAN WILSON”.
+
+select count(*) as number_of_films_rented from film f 
+inner join inventory i on f.film_id = i.film_id
+inner join rental r on i.inventory_id = r.inventory_id
+inner join customer cust on cust.customer_id = r.customer_id
+where cust.first_name = "Susan"
+and cust.last_name = "Wilson"
+and f.rating = "R";
+
++------------------------+
+| number_of_films_rented |
++------------------------+
+|                      3 |
++------------------------+
+1 row in set (0.00 sec)
+

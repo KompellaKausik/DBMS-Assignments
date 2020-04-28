@@ -1,0 +1,38 @@
+mysql> show columns from Employee
+    -> ;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| EmpNo      | varchar(8)  | NO   | PRI | NULL    |       |
+| EmpName    | varchar(20) | NO   |     | NULL    |       |
+| Department | varchar(20) | NO   |     | NULL    |       |
+| Email      | varchar(25) | NO   |     | NULL    |       |
+| Phone      | varchar(8)  | NO   |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> show columns from Customer;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| CustNo   | varchar(8)  | NO   | PRI | NULL    |       |
+| CustName | varchar(30) | NO   |     | NULL    |       |
+| Address  | varchar(50) | NO   |     | NULL    |       |
+| Internal | char(1)     | NO   |     | NULL    |       |
+| Contact  | varchar(35) | NO   |     | NULL    |       |
+| Phone    | varchar(11) | NO   |     | NULL    |       |
+| City     | varchar(30) | NO   |     | NULL    |       |
+| State    | varchar(2)  | NO   |     | NULL    |       |
+| Zip      | varchar(10) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> show columns from Facility;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| FacNo   | varchar(8)  | NO   | PRI | NULL    |       |
+| FacName | varchar(20) | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+

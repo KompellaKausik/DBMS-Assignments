@@ -1,0 +1,34 @@
+mysql> show columns from Location;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| LocNo   | varchar(8)  | NO   | PRI | NULL    |       |
+| FacNo   | varchar(8)  | YES  | MUL | NULL    |       |
+| LocName | varchar(20) | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show columns from ResourceTbl;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| ResNo   | varchar(8)   | NO   | PRI | NULL    |       |
+| ResName | varchar(20)  | NO   |     | NULL    |       |
+| Rate    | decimal(8,2) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show columns from EventPlan;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| PlanNo   | varchar(8)  | NO   | PRI | NULL    |       |
+| EventNo  | varchar(8)  | NO   | MUL | NULL    |       |
+| WorkDate | date        | NO   |     | NULL    |       |
+| Notes    | varchar(30) | YES  |     | NULL    |       |
+| Activity | varchar(20) | NO   |     | NULL    |       |
+| EmpNo    | varchar(8)  | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+

@@ -1,0 +1,34 @@
+ select * from Location;
++-------+-------+-----------------+
+| LocNo | FacNo | LocName         |
++-------+-------+-----------------+
+| L100  | F100  | Locker room     |
+| L101  | F100  | Plaza           |
+| L102  | F100  | Vehicle gate    |
+| L103  | F101  | Locker room     |
+| L104  | F100  | Ticket Booth    |
+| L105  | F101  | Gate            |
+| L106  | F100  | Pedestrian gate |
++-------+-------+-----------------+
+7 rows in set (0.00 sec)
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+ select * from EventPlan;
++--------+---------+------------+--------------------------+-----------+-------+
+| PlanNo | EventNo | WorkDate   | Notes                    | Activity  | EmpNo |
++--------+---------+------------+--------------------------+-----------+-------+
+| P100   | E100    | 2018-10-25 | Standard operation       | Operation | E102  |
+| P101   | E104    | 2018-12-03 | Watch for gate crashers  | Operation | E100  |
+| P102   | E105    | 2018-12-05 | Standard operation       | Operation | E102  |
+| P103   | E106    | 2018-12-12 | Watch for seat switching | Operation | NULL  |
+| P104   | E101    | 2018-10-26 | Standard cleanup         | Cleanup   | E101  |
+| P105   | E100    | 2018-10-25 | Light cleanup            | Cleanup   | E101  |
+| P199   | E102    | 2018-12-10 | ABC                      | Operation | E101  |
+| P299   | E101    | 2018-10-26 | NULL                     | Operation | E101  |
+| P349   | E106    | 2018-12-12 | NULL                     | Setup     | E101  |
+| P85    | E100    | 2018-10-25 | Standard operation       | Cleanup   | E102  |
+| P95    | E101    | 2018-10-26 | Extra security           | Cleanup   | E102  |
++--------+---------+------------+--------------------------+-----------+-------+
+11 rows in set (0.00 sec)
+
